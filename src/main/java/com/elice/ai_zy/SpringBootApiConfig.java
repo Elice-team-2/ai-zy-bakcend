@@ -1,4 +1,4 @@
-package com.okta.developer.demo;
+package com.elice.ai_zy;
 
 import org.neo4j.driver.Driver;
 import org.springframework.context.annotation.Bean;

@@ -1,4 +1,4 @@
-package com.okta.developer.demo.domain;
+package com.elice.ai_zy.domain;
 
 import org.springframework.data.neo4j.core.schema.GeneratedValue;
 import org.springframework.data.neo4j.core.schema.Id;

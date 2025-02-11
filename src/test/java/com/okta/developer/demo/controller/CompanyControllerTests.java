@@ -1,7 +1,8 @@
 package com.okta.developer.demo.controller;
 
-import com.okta.developer.demo.domain.Company;
-import com.okta.developer.demo.repository.CompanyRepository;
+import com.elice.ai_zy.controller.CompanyController;
+import com.elice.ai_zy.domain.Company;
+import com.elice.ai_zy.repository.CompanyRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.graphql.GraphQlTest;

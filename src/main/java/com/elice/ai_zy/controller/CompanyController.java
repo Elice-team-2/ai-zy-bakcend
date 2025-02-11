@@ -1,7 +1,7 @@
-package com.okta.developer.demo.controller;
+package com.elice.ai_zy.controller;
 
-import com.okta.developer.demo.domain.Company;
-import com.okta.developer.demo.repository.CompanyRepository;
+import com.elice.ai_zy.domain.Company;
+import com.elice.ai_zy.repository.CompanyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
