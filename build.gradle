@@ -37,12 +37,8 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-data-neo4j'
     implementation 'org.springframework.boot:spring-boot-starter-graphql'
     implementation 'org.springframework.boot:spring-boot-starter-web'
-    implementation 'eu.michael-simons.neo4j:neo4j-migrations-spring-boot-starter:2.8.2'
     implementation 'com.okta.spring:okta-spring-boot-starter:3.0.6'
-    developmentOnly 'org.springframework.boot:spring-boot-docker-compose'
-    testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.springframework:spring-webflux'
-    testImplementation 'org.springframework.graphql:spring-graphql-test'
 }
 
 tasks.named('test') {
