@@ -21,11 +21,20 @@ public class ProceedingsService {
 
     @Transactional
     public Proceedings createProceedings(CreateProceedingsDTO dto) {
+        if (dto.getOwner() == null) {
+            throw new IllegalArgumentException("Owner is required");
+        }
+        if (dto.getProject() == null) {
+            throw new IllegalArgumentException("Project is required");
+        }
+
         Proceedings proceedings = Proceedings.builder()
                 .title(dto.getTitle())
                 .contents(dto.getContents())
                 .tags(dto.getTags())
                 .attendeeNames(dto.getAttendees())
+                .owner(dto.getOwner())
+                .project(dto.getProject())
                 .createdAt(LocalDateTime.now())
                 .build();
         return proceedingsRepository.save(proceedings);
@@ -47,13 +56,20 @@ public class ProceedingsService {
     public Proceedings updateProceeding(String proceedingId, UpdateProceedingsDTO dto) {
         Proceedings proceedings = proceedingsRepository.findById(proceedingId)
                 .orElseThrow(() -> new EntityNotFoundException("Proceeding not found with id: " + proceedingId));
-
+        if (dto.getOwner() == null) {
+            throw new IllegalArgumentException("Owner is required");
+        }
+        if (dto.getProject() == null) {
+            throw new IllegalArgumentException("Project is required");
+        }
         proceedings = Proceedings.builder()
                 .proceedingsId(proceedings.getProceedingsId())
                 .title(dto.getTitle() != null ? dto.getTitle() : proceedings.getTitle())
                 .contents(dto.getContents() != null ? dto.getContents() : proceedings.getContents())
                 .tags(dto.getTags() != null ? dto.getTags() : proceedings.getTags())
                 .attendeeNames(dto.getAttendees())
+                .owner(dto.getOwner())
+                .project(dto.getProject())
                 .createdAt(proceedings.getCreatedAt())
                 .updatedAt(LocalDateTime.now())
                 .build();
