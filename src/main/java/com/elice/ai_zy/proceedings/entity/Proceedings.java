@@ -33,10 +33,6 @@ public class Proceedings {
     @Column(nullable = true, name = "tags", length = 255)
     private ProceedingsTags tags;
 
-//    @JoinColumn(nullable = true)
-//    @ManyToOne(fetch = FetchType.LAZY)
-//    private Project project;
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "owner")
     private User owner;
