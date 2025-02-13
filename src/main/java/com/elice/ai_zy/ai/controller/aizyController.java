@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
-@RequestMapping("/bot")
 @RestController
 public class aizyController {
     @Value("${openai.model}")
@@ -25,10 +24,12 @@ public class aizyController {
         this.template = template;
     }
 
-    @GetMapping("/chat")
+    @GetMapping("/api/public/chat")
     public String chat(@RequestParam(name = "prompt")String prompt){
+
         ChatGPTRequest request = new ChatGPTRequest(model, prompt);
         ChatGPTResponse chatGPTResponse =  template.postForObject(apiURL, request, ChatGPTResponse.class);
+
         return chatGPTResponse.getChoices().get(0).getMessage().getContent();
     }
 }
