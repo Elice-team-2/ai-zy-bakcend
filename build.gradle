@@ -38,6 +38,7 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-graphql'
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'com.okta.spring:okta-spring-boot-starter:3.0.6'
+	implementation 'com.auth0:auth0:2.11.0'
     testImplementation 'org.springframework:spring-webflux'
 }
 
