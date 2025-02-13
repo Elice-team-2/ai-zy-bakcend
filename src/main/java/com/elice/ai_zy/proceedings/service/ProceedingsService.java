@@ -19,32 +19,31 @@ public class ProceedingsService {
 
     private final ProceedingsRepository proceedingsRepository;
 
-    // Create
-    public Proceedings createProceedings(CreateProceedingsDTO dto, String userNames) {
+    @Transactional
+    public Proceedings createProceedings(CreateProceedingsDTO dto, String attendeeNames) {
         Proceedings proceedings = Proceedings.builder()
                 .title(dto.getTitle())
                 .contents(dto.getContents())
                 .tags(dto.getTags())
-                .attendeeNames(dto.getAttendees(userNames))
+                .attendeeNames(dto.getAttendees(attendeeNames))
                 .createdAt(LocalDateTime.now())
                 .build();
         return proceedingsRepository.save(proceedings);
     }
 
-    // Read
+    @Transactional
     public Proceedings readProceedingById(UUID proceedingId) {
         return proceedingsRepository.findById(proceedingId)
                 .orElseThrow(() -> new EntityNotFoundException("Proceeding not found with id: " + proceedingId));
     }
 
-    // Read All
+    @Transactional
     public List<Proceedings> readAllProceedings() {
         return proceedingsRepository.findAll();
     }
 
-    // Update
     @Transactional
-    public Proceedings updateProceeding(UUID proceedingId, UpdateProceedingsDTO dto) {
+    public Proceedings updateProceeding(UUID proceedingId, UpdateProceedingsDTO dto, String attendeeNames) {
         Proceedings proceedings = proceedingsRepository.findById(proceedingId)
                 .orElseThrow(() -> new EntityNotFoundException("Proceeding not found with id: " + proceedingId));
 
@@ -53,6 +52,7 @@ public class ProceedingsService {
                 .title(dto.getTitle() != null ? dto.getTitle() : proceedings.getTitle())
                 .contents(dto.getContents() != null ? dto.getContents() : proceedings.getContents())
                 .tags(dto.getTags() != null ? dto.getTags() : proceedings.getTags())
+                .attendeeNames(dto.updateAttendees(attendeeNames))
                 .createdAt(proceedings.getCreatedAt())
                 .updatedAt(LocalDateTime.now())
                 .build();
@@ -60,7 +60,7 @@ public class ProceedingsService {
         return proceedingsRepository.save(proceedings);
     }
 
-    // Delete
+    @Transactional
     public UUID deleteProceeding(UUID proceedingId) {
         Proceedings proceedings = proceedingsRepository.findById(proceedingId)
                 .orElseThrow(() -> new EntityNotFoundException("Proceeding not found with id: " + proceedingId));
