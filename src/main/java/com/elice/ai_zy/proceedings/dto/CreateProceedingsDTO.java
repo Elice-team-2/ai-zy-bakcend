@@ -20,12 +20,12 @@ public class CreateProceedingsDTO {
     private LocalDateTime createdAt;
 
 
-    public List<String> getAttendees(String userInput) {
-        if (userInput == null || userInput.trim().isEmpty()) {
+    public List<String> getAttendees(String attendeeNames) {
+        if (attendeeNames == null || attendeeNames.trim().isEmpty()) {
             return List.of();
         }
 
-        String[] attendeeArray = userInput.split(",");
+        String[] attendeeArray = attendeeNames.split(",");
         return Arrays.stream(attendeeArray)
                 .map(String::trim)
                 .filter(s -> !s.isEmpty())
