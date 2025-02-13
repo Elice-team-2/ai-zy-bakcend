@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -19,12 +20,9 @@ public class UpdateProceedingsDTO {
     private List<String> attendees;
     private LocalDateTime updatedAt;
 
-    private List<String> updateAttendees() {
-        if (this.attendees == null) {
-            return List.of();
-        }
-
-        return this.attendees.stream()
+    public List<String> updateAttendees(String attendeeNames) {
+        String[] attendeeArray = attendeeNames.split(",");
+        return Arrays.stream(attendeeArray)
                 .map(String::trim)
                 .filter(s -> !s.isEmpty())
                 .collect(Collectors.toList());
