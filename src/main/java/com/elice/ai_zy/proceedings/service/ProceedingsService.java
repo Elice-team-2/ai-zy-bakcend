@@ -32,7 +32,7 @@ public class ProceedingsService {
     }
 
     @Transactional
-    public Proceedings readProceedingById(UUID proceedingId) {
+    public Proceedings readProceedingById(String proceedingId) {
         return proceedingsRepository.findById(proceedingId)
                 .orElseThrow(() -> new EntityNotFoundException("Proceeding not found with id: " + proceedingId));
     }
@@ -44,7 +44,7 @@ public class ProceedingsService {
     }
 
     @Transactional
-    public Proceedings updateProceeding(UUID proceedingId, UpdateProceedingsDTO dto) {
+    public Proceedings updateProceeding(String proceedingId, UpdateProceedingsDTO dto) {
         Proceedings proceedings = proceedingsRepository.findById(proceedingId)
                 .orElseThrow(() -> new EntityNotFoundException("Proceeding not found with id: " + proceedingId));
 
@@ -62,7 +62,7 @@ public class ProceedingsService {
     }
 
     @Transactional
-    public UUID deleteProceeding(UUID proceedingId) {
+    public String deleteProceeding(String proceedingId) {
         Proceedings proceedings = proceedingsRepository.findById(proceedingId)
                 .orElseThrow(() -> new EntityNotFoundException("Proceeding not found with id: " + proceedingId));
 

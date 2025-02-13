@@ -24,7 +24,7 @@ public class ProceedingsController {
     }
 
     @GetMapping("/proceedings/{proceedingsId}")
-    public ResponseEntity<Proceedings> getProceedingById(@PathVariable UUID proceedingsId) {
+    public ResponseEntity<Proceedings> getProceedingById(@PathVariable String proceedingsId) {
         return ResponseEntity.ok(proceedingsService.readProceedingById(proceedingsId));
     }
 
@@ -34,12 +34,12 @@ public class ProceedingsController {
     }
 
     @PutMapping("/proceedings/{proceedingsId}")
-    public ResponseEntity<Proceedings> updateProceeding(@PathVariable UUID proceedingsId, @RequestBody UpdateProceedingsDTO dto) {
+    public ResponseEntity<Proceedings> updateProceeding(@PathVariable String proceedingsId, @RequestBody UpdateProceedingsDTO dto) {
         return ResponseEntity.ok(proceedingsService.updateProceeding(proceedingsId, dto));
     }
 
     @DeleteMapping("/proceedings/{proceedingsId}")
-    public ResponseEntity<UUID> deleteProceeding(@PathVariable UUID proceedingsId) {
+    public ResponseEntity<String> deleteProceeding(@PathVariable String proceedingsId) {
         return ResponseEntity.ok(proceedingsService.deleteProceeding(proceedingsId));
     }
 }
