@@ -21,7 +21,7 @@ public class SecurityConfig {
             .csrf(AbstractHttpConfigurer::disable)  // csrf 비활성화
             .cors(cors -> cors.configurationSource(corsConfigurationSource()))
             .authorizeHttpRequests(auth -> auth
-                .requestMatchers("/api/public/**").permitAll()
+                .requestMatchers("/api/**").permitAll()
                 .anyRequest().authenticated())
             .oauth2ResourceServer(oauth2 -> oauth2
                 .jwt(withDefaults()));
