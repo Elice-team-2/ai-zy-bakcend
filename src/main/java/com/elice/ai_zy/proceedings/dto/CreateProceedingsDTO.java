@@ -18,7 +18,4 @@ public class CreateProceedingsDTO {
     private List<String> attendees;
     private User owner;
     private LocalDateTime createdAt;
-
-
-
 }

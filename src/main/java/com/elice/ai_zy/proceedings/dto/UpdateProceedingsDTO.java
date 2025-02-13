@@ -19,6 +19,4 @@ public class UpdateProceedingsDTO {
     private User owner;
     private List<String> attendees;
     private LocalDateTime updatedAt;
-
-
 }

@@ -5,5 +5,4 @@ public enum ProceedingsTags {
     REVIEW,
     RETROSPECTIVE,
     DECISION_MAKING
-
 }
