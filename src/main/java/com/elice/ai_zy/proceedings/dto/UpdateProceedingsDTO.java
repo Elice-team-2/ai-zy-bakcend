@@ -20,11 +20,5 @@ public class UpdateProceedingsDTO {
     private List<String> attendees;
     private LocalDateTime updatedAt;
 
-    public List<String> updateAttendees(String attendeeNames) {
-        String[] attendeeArray = attendeeNames.split(",");
-        return Arrays.stream(attendeeArray)
-                .map(String::trim)
-                .filter(s -> !s.isEmpty())
-                .collect(Collectors.toList());
-    }
+
 }

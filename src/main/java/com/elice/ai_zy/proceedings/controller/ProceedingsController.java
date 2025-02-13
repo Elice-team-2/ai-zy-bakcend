@@ -19,8 +19,8 @@ public class ProceedingsController {
     private final ProceedingsService proceedingsService;
 
     @PostMapping("/proceedings")
-    public ResponseEntity<Proceedings> createProceeding(@RequestBody CreateProceedingsDTO dto, String userNames) {
-        return ResponseEntity.ok(proceedingsService.createProceedings(dto, userNames));
+    public ResponseEntity<Proceedings> createProceeding(@RequestBody CreateProceedingsDTO dto) {
+        return ResponseEntity.ok(proceedingsService.createProceedings(dto));
     }
 
     @GetMapping("/proceedings/{proceedingsId}")
@@ -34,8 +34,8 @@ public class ProceedingsController {
     }
 
     @PutMapping("/proceedings/{proceedingsId}")
-    public ResponseEntity<Proceedings> updateProceeding(@PathVariable UUID proceedingsId, @RequestBody UpdateProceedingsDTO dto,String attendeeNames) {
-        return ResponseEntity.ok(proceedingsService.updateProceeding(proceedingsId, dto, attendeeNames));
+    public ResponseEntity<Proceedings> updateProceeding(@PathVariable UUID proceedingsId, @RequestBody UpdateProceedingsDTO dto) {
+        return ResponseEntity.ok(proceedingsService.updateProceeding(proceedingsId, dto));
     }
 
     @DeleteMapping("/proceedings/{proceedingsId}")

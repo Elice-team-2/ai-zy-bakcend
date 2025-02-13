@@ -20,12 +20,12 @@ public class ProceedingsService {
     private final ProceedingsRepository proceedingsRepository;
 
     @Transactional
-    public Proceedings createProceedings(CreateProceedingsDTO dto, String attendeeNames) {
+    public Proceedings createProceedings(CreateProceedingsDTO dto) {
         Proceedings proceedings = Proceedings.builder()
                 .title(dto.getTitle())
                 .contents(dto.getContents())
                 .tags(dto.getTags())
-                .attendeeNames(dto.getAttendees(attendeeNames))
+                .attendeeNames(dto.getAttendees())
                 .createdAt(LocalDateTime.now())
                 .build();
         return proceedingsRepository.save(proceedings);
@@ -39,11 +39,12 @@ public class ProceedingsService {
 
     @Transactional
     public List<Proceedings> readAllProceedings() {
-        return proceedingsRepository.findAll();
+        List<Proceedings> proceedingsList = proceedingsRepository.findAll();
+        return proceedingsList.isEmpty() ? List.of() : proceedingsList;
     }
 
     @Transactional
-    public Proceedings updateProceeding(UUID proceedingId, UpdateProceedingsDTO dto, String attendeeNames) {
+    public Proceedings updateProceeding(UUID proceedingId, UpdateProceedingsDTO dto) {
         Proceedings proceedings = proceedingsRepository.findById(proceedingId)
                 .orElseThrow(() -> new EntityNotFoundException("Proceeding not found with id: " + proceedingId));
 
@@ -52,7 +53,7 @@ public class ProceedingsService {
                 .title(dto.getTitle() != null ? dto.getTitle() : proceedings.getTitle())
                 .contents(dto.getContents() != null ? dto.getContents() : proceedings.getContents())
                 .tags(dto.getTags() != null ? dto.getTags() : proceedings.getTags())
-                .attendeeNames(dto.updateAttendees(attendeeNames))
+                .attendeeNames(dto.getAttendees())
                 .createdAt(proceedings.getCreatedAt())
                 .updatedAt(LocalDateTime.now())
                 .build();

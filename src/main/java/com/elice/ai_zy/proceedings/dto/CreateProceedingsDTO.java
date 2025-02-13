@@ -20,15 +20,5 @@ public class CreateProceedingsDTO {
     private LocalDateTime createdAt;
 
 
-    public List<String> getAttendees(String attendeeNames) {
-        if (attendeeNames == null || attendeeNames.trim().isEmpty()) {
-            return List.of();
-        }
 
-        String[] attendeeArray = attendeeNames.split(",");
-        return Arrays.stream(attendeeArray)
-                .map(String::trim)
-                .filter(s -> !s.isEmpty())
-                .collect(Collectors.toList());
-    }
 }
