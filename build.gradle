@@ -21,6 +21,8 @@ configurations {
 
 repositories {
 	mavenCentral()
+	maven { url 'https://repo.spring.io/milestone' }
+	maven { url 'https://repo.spring.io/snapshot' }
 }
 
 dependencies {
@@ -39,6 +41,10 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'com.okta.spring:okta-spring-boot-starter:3.0.6'
     testImplementation 'org.springframework:spring-webflux'
+
+	//openAI
+	implementation 'org.springframework.ai:spring-ai-openai-spring-boot-starter:1.0.0-M1'
+
 }
 
 tasks.named('test') {

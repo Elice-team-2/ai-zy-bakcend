@@ -5,6 +5,8 @@ import com.elice.ai_zy.user.entity.User;
 import jakarta.persistence.*;
 import org.hibernate.annotations.UuidGenerator;
 
+import java.time.LocalDateTime;
+
 @Table(name = "ai")
 @Entity
 public class AI {
@@ -19,13 +21,16 @@ public class AI {
     @JoinColumn(name = "user_id")
     private User user;
 
-    @JoinColumn
+    @Column
     private String rawCommand;
 
-    @JoinColumn
+    @Column
     private String response;
 
-    @JoinColumn
+    @Column
     private String mode;
+
+    @Column
+    private LocalDateTime createAt;
 
 }

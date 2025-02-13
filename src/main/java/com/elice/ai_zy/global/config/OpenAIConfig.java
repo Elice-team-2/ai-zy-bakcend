@@ -1,6 +1,9 @@
 package com.elice.ai_zy.global.config;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.ai.chat.client.ChatClient;
+import org.springframework.ai.openai.OpenAiChatModel;
+import org.springframework.ai.openai.api.OpenAiApi;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -8,9 +11,9 @@ import org.springframework.web.client.RestTemplate;
 
 @Slf4j
 @Configuration
-public class OpenAiConfig {
+public class OpenAIConfig {
 
-    @Value("${openai.api.key}")
+    @Value("${spring.ai.openai.api-key}")
     private String openAiKey;
     @Bean
     public RestTemplate template(){
@@ -20,5 +23,10 @@ public class OpenAiConfig {
             return execution.execute(request, body);
         });
         return restTemplate;
+    }
+
+    @Bean
+    public OpenAiChatModel chatClient() {
+        return new OpenAiChatModel(new OpenAiApi(openAiKey));
     }
 }
