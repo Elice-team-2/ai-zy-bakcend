@@ -1,5 +1,6 @@
 package com.elice.ai_zy.projects.service.impl;
 
+import com.elice.ai_zy.global.eception.ProjectValidationException;
 import com.elice.ai_zy.projects.dto.ProjectPostDto;
 import com.elice.ai_zy.projects.entity.Project;
 import com.elice.ai_zy.projects.repository.ProjectRepository;
@@ -16,12 +17,26 @@ public class ProjectServiceImpl implements ProjectService {
 
     private final ProjectRepository projectRepository;
 
-    public ProjectServiceImpl(ProjectRepository projectRepository) {
+    private final ProjectValidationException projectValidationException;
+
+    public ProjectServiceImpl(ProjectRepository projectRepository, ProjectValidationException projectValidationException) {
         this.projectRepository = projectRepository;
+        this.projectValidationException = projectValidationException;
     }
 
     @Override
     public ResponseEntity<?> postProject(ProjectPostDto projectPostDto) {
+
+        if (projectPostDto.getTitle() == null || projectPostDto.getTitle().trim().isEmpty()) {
+            throw new ProjectValidationException("제목은 필수 입력값입니다");
+        }
+        if (projectPostDto.getDescription() == null || projectPostDto.getDescription().trim().isEmpty()) {
+            throw new ProjectValidationException("설명은 필수 입력값입니다");
+        }
+        if (projectPostDto.getTag() == null) {
+            throw new ProjectValidationException("태그는 필수 입력값입니다");
+        }
+
         Project project = new Project();
 
         project.setId(UUID.randomUUID().toString());
